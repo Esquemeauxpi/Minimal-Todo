@@ -76,7 +76,11 @@ public class settingsTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+////////////////////////////////////////////////////////////////////////////////////////////
+/// Also, I really wanted to put in a try/catch here to check if Night mode was on,then  ///
+/// check for it to be on, and if off check to see if it was off, but I couldn't quite   ///
+/// figure it out. I know Espresso isn't "built" for that anyway, but would've been nice //
+///////////////////////////////////////////////////////////////////////////////////////////
         ViewInteraction textView3 = onView(
                 allOf(withText("Minimal"),
                         isDisplayed()));
@@ -88,9 +92,9 @@ public class settingsTest {
         textView4.check(matches(withText("Night mode is off")));
 
 
-///
-/// Turn night mode on
-///
+///////////////////////////
+/// Turn night mode on////
+//////////////////////////
 
         DataInteraction linearLayout = onData(anything())
                 .inAdapterView(allOf(withId(android.R.id.list),
@@ -106,9 +110,11 @@ public class settingsTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-///
-///Assert that night mode is on
-///
+
+///////////////////////////////////
+///Assert that night mode is on////
+///////////////////////////////////
+
         ViewInteraction textView5 = onView(
                 allOf(withId(android.R.id.summary), withText("Night mode is on"),
                         isDisplayed()));
