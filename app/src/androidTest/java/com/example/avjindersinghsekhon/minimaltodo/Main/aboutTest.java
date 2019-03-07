@@ -51,10 +51,9 @@ public class aboutTest {
 
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
-        ViewInteraction appCompatTextView = onView(
+        onView(
                 allOf(withId(R.id.title), withText("About"),
-                        isDisplayed()));
-        appCompatTextView.perform(click());
+                        isDisplayed())).perform(click());
 
 
         try {
