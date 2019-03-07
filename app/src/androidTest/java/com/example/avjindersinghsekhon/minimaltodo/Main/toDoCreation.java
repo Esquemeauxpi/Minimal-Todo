@@ -41,15 +41,16 @@ public class toDoCreation {
     @Test
     public void toDoCreation() {
 
+ ///Test to actually make a 'To Do'
+
         try {
-            Thread.sleep(000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        onView(
-                allOf(withId(R.id.addToDoItemFAB),
-                        isDisplayed())).perform(click());
+        onView(withId(R.id.addToDoItemFAB)
+                        ).perform(click());
 
        ///Adding sleep statement to allow content to load on next screen
         try {
@@ -58,18 +59,17 @@ public class toDoCreation {
             e.printStackTrace();
         }
 
-        onView(
-                allOf(withId(R.id.userToDoEditText),
-                        isDisplayed())).perform(replaceText("Hi. This is a reminder."), closeSoftKeyboard());
 
-        onView(
-                allOf(withId(R.id.userToDoDescription),
-                        isDisplayed())).perform(replaceText("Don't forget me"), closeSoftKeyboard());
+        onView((withId(R.id.userToDoEditText)))
+                .perform(replaceText("Hi. This is a reminder."), closeSoftKeyboard());
 
-         onView(
-                allOf(withId(R.id.toDoHasDateSwitchCompat),
-                        isDisplayed())).perform(click());
 
+        onView((withId(R.id.userToDoDescription)))
+                .perform(replaceText("Don't forget me"), closeSoftKeyboard());
+
+
+        onView(withId(R.id.toDoHasDateSwitchCompat))
+                .perform(click());
 
         try {
             Thread.sleep(2000);
@@ -77,31 +77,26 @@ public class toDoCreation {
             e.printStackTrace();
         }
 
-        onView(
-                allOf(withId(R.id.newToDoDateTimeReminderTextView),
-                        isDisplayed())).check(matches(isDisplayed()));
+// Asserting everything if filled in that I want filled in
+        onView((withId(R.id.newToDoDateTimeReminderTextView)
+            )).check(matches(isDisplayed()));
 
-        onView(
-                allOf(withId(R.id.userToDoDescription), withText("Don't forget me"),
-                        isDisplayed())).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.userToDoDescription), withText("Don't forget me")
+                       )).check(matches(isDisplayed()));
 
-        onView(
-                allOf(withId(R.id.toDoHasDateSwitchCompat),
-                        isDisplayed())).check(matches(isDisplayed()));
+        onView((withId(R.id.toDoHasDateSwitchCompat)
+                        )).check(matches(isDisplayed()));
 
-        onView(
-                allOf(withId(R.id.copyclipboard),
-                        isDisplayed())).check(matches(isDisplayed()));
+        onView((withId(R.id.copyclipboard)
+                        )).check(matches(isDisplayed()));
 
-        onView(
-                allOf(withId(R.id.makeToDoFloatingActionButton),
-                        isDisplayed())).check(matches(isDisplayed()));
+        onView((withId(R.id.makeToDoFloatingActionButton)
+                        )).check(matches(isDisplayed()));
 
-        onView(
-                allOf(withId(R.id.makeToDoFloatingActionButton),
-                        isDisplayed())).perform(click());
+        onView((withId(R.id.makeToDoFloatingActionButton)
+                        )).perform(click());
 
-        // Adding sleep statement before moving back to previous screen
+// Adding sleep statement before moving back to previous screen
 
         try {
             Thread.sleep(3000);
@@ -109,13 +104,15 @@ public class toDoCreation {
             e.printStackTrace();
         }
 
-       onView(
-                allOf(withId(R.id.toDoListItemTextview), withText("Hi. This is a reminder."),
-                        isDisplayed())).check(matches(withText("Hi. This is a reminder.")));
+// Asserting that 'To Do' was created
 
-        onView(
-                allOf(withId(R.id.todoListItemTimeTextView),
-                        isDisplayed())).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.toDoListItemTextview), withText("Hi. This is a reminder.")
+                )).check(matches(withText("Hi. This is a reminder.")));
+
+
+        onView((withId(R.id.todoListItemTimeTextView)
+                        )).check(matches(isDisplayed()));
+
     }
 
     private static Matcher<View> childAtPosition(

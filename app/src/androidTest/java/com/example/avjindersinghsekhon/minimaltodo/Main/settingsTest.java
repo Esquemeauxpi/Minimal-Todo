@@ -55,20 +55,17 @@ public class settingsTest {
                 allOf(withContentDescription("More options"),
                         isDisplayed())).check(matches(isDisplayed())).perform(click());
 
-        ViewInteraction textView = onView(
+        onView(
                 allOf(withId(R.id.title), withText("Settings"),
-                        isDisplayed()));
-        textView.check(matches(withText("Settings")));
+                        isDisplayed())).check(matches(withText("Settings")));
 
-        ViewInteraction textView2 = onView(
+        onView(
                 allOf(withId(R.id.title), withText("About"),
-                        isDisplayed()));
-        textView2.check(matches(withText("About")));
+                        isDisplayed())).check(matches(withText("About")));
 
-        ViewInteraction appCompatTextView = onView(
+        onView(
                 allOf(withId(R.id.title), withText("Settings"),
-                        isDisplayed()));
-        appCompatTextView.perform(click());
+                        isDisplayed())).perform(click());
 
 
         try {
@@ -78,31 +75,28 @@ public class settingsTest {
         }
 ////////////////////////////////////////////////////////////////////////////////////////////
 /// Also, I really wanted to put in a try/catch here to check if Night mode was on,then  ///
-/// check for it to be on, and if off check to see if it was off, but I couldn't quite   ///
+///   assert that it was on, and if off assert that it was off, but I couldn't quite     ///
 /// figure it out. I know Espresso isn't "built" for that anyway, but would've been nice //
 ///////////////////////////////////////////////////////////////////////////////////////////
-        ViewInteraction textView3 = onView(
+        onView(
                 allOf(withText("Minimal"),
-                        isDisplayed()));
-        textView3.check(matches(withText("Minimal")));
+                        isDisplayed())).check(matches(withText("Minimal")));
 
-        ViewInteraction textView4 = onView(
+        onView(
                 allOf(withId(android.R.id.summary), withText("Night mode is off"),
-                        isDisplayed()));
-        textView4.check(matches(withText("Night mode is off")));
+                        isDisplayed())).check(matches(withText("Night mode is off")));
 
 
 ///////////////////////////
 /// Turn night mode on////
 //////////////////////////
 
-        DataInteraction linearLayout = onData(anything())
+        onData(anything())
                 .inAdapterView(allOf(withId(android.R.id.list),
                         childAtPosition(
                                 withClassName(is("android.widget.LinearLayout")),
                                 0)))
-                .atPosition(0);
-        linearLayout.perform(click());
+                .atPosition(0).perform(click());
 
 
         try {
@@ -115,15 +109,43 @@ public class settingsTest {
 ///Assert that night mode is on////
 ///////////////////////////////////
 
-        ViewInteraction textView5 = onView(
+        onView(
                 allOf(withId(android.R.id.summary), withText("Night mode is on"),
-                        isDisplayed()));
-        textView5.check(matches(withText("Night mode is on")));
+                        isDisplayed())).check(matches(withText("Night mode is on")));
 
-        ViewInteraction imageButton = onView(
+//////////////////////////////////////////
+/// Turn night mode off to reset test ////
+/////////////////////////////////////////
+
+        onData(anything())
+                .inAdapterView(allOf(withId(android.R.id.list),
+                        childAtPosition(
+                                withClassName(is("android.widget.LinearLayout")),
+                                0)))
+                .atPosition(0).perform(click());
+
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+///////////////////////////////////
+///Assert that night mode is off///
+///////////////////////////////////
+
+       onView(
+                allOf(withId(android.R.id.summary), withText("Night mode is off"),
+                        isDisplayed())).check(matches(withText("Night mode is off")));
+
+///////////////////////////////////
+///Navigate up to reset the test///
+///////////////////////////////////
+
+        onView(
                 allOf(withContentDescription("Navigate up"),
-                        isDisplayed()));
-        imageButton.perform(click());
+                        isDisplayed())).perform(click());
 
     }
 

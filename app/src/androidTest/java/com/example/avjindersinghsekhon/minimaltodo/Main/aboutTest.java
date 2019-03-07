@@ -41,6 +41,8 @@ public class aboutTest {
     @Test
     public void aboutTest() {
 
+        ///Testing the about page
+
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
