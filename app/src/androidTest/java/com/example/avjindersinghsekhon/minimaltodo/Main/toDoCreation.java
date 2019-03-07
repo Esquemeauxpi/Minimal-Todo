@@ -42,7 +42,7 @@ public class toDoCreation {
     public void toDoCreation() {
 
         try {
-            Thread.sleep(3000);
+            Thread.sleep(000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
