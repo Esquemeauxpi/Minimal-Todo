@@ -1,3 +1,5 @@
+# I forked this project to practice writing automated Android espresso tests in Java.  The tests friggin' work! 
+
 # Minimal ![Build Status](https://travis-ci.org/avjinder/Minimal-Todo.svg?branch=master)
 
 <img src="/screenshots/app_icon.png" height="200px"/> <br>
